@@ -288,7 +288,8 @@ select * from employee where id in (select id from employee where age < (select 
 
 **MODULE-4 GRADE**
 
-![image](https://github.com/user-attachments/assets/e49c1065-ac14-4da6-8bfc-f00c162313e0)
+![image](https://github.com/user-attachments/assets/45ce6474-2f08-4ec9-97e4-c832d7a31c09)
+
 
 ## RESULT
 Thus, the SQL queries to implement subqueries and views have been executed successfully.
