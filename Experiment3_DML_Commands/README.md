@@ -1,5 +1,5 @@
 # Experiment 3: DML Commands
-### Name:Kavya V
+
 ## AIM
 To study and implement DML (Data Manipulation Language) commands.
 
@@ -46,165 +46,234 @@ Used to retrieve records from a table.
 SELECT column1, column2 FROM table_name WHERE condition;
 ```
 **Question 1**
---
-![image](https://github.com/user-attachments/assets/9da6c96f-36f1-4a16-8a7c-5e000d72108d)
 
+Increase quantity of all products by 10% to adjust for surplus stock counted:
+
+&emsp;**product_id**  
+&emsp;**product_name**  
+&emsp;**category**  
+&emsp;**cost_price**  
+&emsp;**sell_price**  
+&emsp;**reorder_lvl**  
+&emsp;**quantity**  
+&emsp;**supplier_id**
 
 ```sql
-update sales
-set sell_price= sell_price*1.05
-where product_id =15;
+update products set quantity = quantity * 1.10;
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/838735b2-7bf2-4fab-bb94-4838724fef55)
-
+![image](https://github.com/user-attachments/assets/de0772c8-c30f-41b6-911a-4aebfb7dca2f)
 
 **Question 2**
----
-![image](https://github.com/user-attachments/assets/76c26221-47fd-45e8-9617-b857f615b360)
 
+Certainly! Here's the formatted version with `&emsp;` and bold where necessary:
+
+**Write a SQL query to reduce the reorder level by 30% where cost price is more than 50 and quantity in stock is less than 100 in the products table.**
+
+&emsp;**Products Table** 
+&emsp;**product_id**     INT PRIMARY KEY  
+&emsp;**product_name**   VARCHAR(10)  
+&emsp;**category**       VARCHAR(50)  
+&emsp;**cost_price**     DECIMAL(10)  
+&emsp;**sell_price**     DECIMAL(10)  
+&emsp;**reorder_lvl**    INT  
+&emsp;**quantity**       INT  
+&emsp;**supplier_id**    INT  
 
 ```sql
-update sales
-set sell_price = sell_price +3
-where product_id in(
-select product_id
-from PRODUCTS
-where supplier_id=4);
+update products set reorder_lvl = reorder_lvl * 0.70 where cost_price > 50 and quantity < 100;
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/fd6d6d2d-8a7b-4b90-a051-4b991399e8e1)
-
+![image](https://github.com/user-attachments/assets/9b573123-e329-4cb2-b4eb-4ac425f988c0)
 
 **Question 3**
----
-![image](https://github.com/user-attachments/assets/14d2ab3f-4b29-41b0-b12d-d31bdd8fd1e1)
 
+**Write a SQL statement to change the first_name column of the employees table with 'John' for those employees whose department_id is 80 and gets a commission_pct below 0.35.**
+
+&emsp;**Employees table**
+
+&emsp;employee_id  
+&emsp;first_name  
+&emsp;last_name  
+&emsp;email  
+&emsp;phone_number  
+&emsp;hire_date  
+&emsp;job_id  
+&emsp;salary  
+&emsp;commission_pct  
+&emsp;manager_id  
+&emsp;department_id  
 
 ```sql
-update Employees
-set EMAIL= 'not available' ,
-COMMISSION_PCT =0.55
-where department_id =110;
+update employees set first_name = 'John' where department_id = 80 and commission_pct < 0.35;
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/cb74d6b3-7573-44b1-a5e7-8cbe489e64f1)
+![image](https://github.com/user-attachments/assets/189216d8-d114-429c-b154-a930abdf5bed)
 
 
 **Question 4**
----
-![image](https://github.com/user-attachments/assets/75754ae7-fe7d-4980-8b26-0f87f2bf42a2)
 
+**Write a SQL statement to update the grade of all customers in Chennai city as 5.**
+
+&emsp;**Customer table**  
+
+&emsp;customer_id  
+&emsp;cust_name  
+&emsp;city  
+&emsp;grade  
+&emsp;salesman_id  
 
 ```sql
-update products
-set reorder_lvl=reorder_lvl*1.30
-where category = 'Food' and quantity<50;
+update customer set grade = 5 where city = 'Chennai';
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/e88b612b-3152-4c37-8358-2a54aa260f33)
+![image](https://github.com/user-attachments/assets/e351e590-d120-433d-8756-7b213929b298)
 
 
 **Question 5**
----
-![image](https://github.com/user-attachments/assets/c7918f1c-91c8-4c25-849a-6bcf9c7e40c0)
 
+**Write a SQL statement to find all those customers with all information whose names are ending with the letter 'n'.**
+
+**Customer table:**
+
+| cid | name         | type | notnu | dflt_value | pk |
+|-----|--------------|------|-------|------------|----|
+| 0   | customer_id  | int  | 0     | 0          | 0  |
+| 1   | cust_name    | text | 0     | 0          | 0  |
+| 2   | city         | text | 0     | 0          | 0  |
+| 3   | grade        | int  | 0     | 0          | 0  |
 
 ```sql
-update PRODUCTS
-set reorder_lvl= reorder_lvl*0.7
-where product_name like '%cream%' and quantity >reorder_lvl;
+select * from customer where cust_name like ('%n');
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/97ad3fec-6f1b-4860-be8a-5f7c026c6c76)
-
+![image](https://github.com/user-attachments/assets/ca506248-83f7-45f2-a074-a351c70c81ac)
 
 **Question 6**
----
-![image](https://github.com/user-attachments/assets/f2540b66-2661-4114-a9f2-4af237d6e0b6)
 
+**Write a query to select all the records from the EmployeeInfo table, where the departments are either HR or Account.**
+
+**EmployeeInfo table:**
+
+| EmpID | EmpFname | EmpLname | Department | Project | Address        | DOB        | Gender |
+|-------|----------|----------|------------|---------|----------------|------------|--------|
+| 1     | Sanjay   | Mehra    | HR         | P1      | Hyderabad(HYD) | 01/12/1976 | M      |
+| 2     | Ananya   | Mishra   | Admin      | P2      | Delhi(DEL)     | 02/05/1968 | F      |
 
 ```sql
-delete from Doctors
-where specialization ='Cardiology';
+select * from employeeInfo where department in ('HR', 'Account');
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/21f6f95e-b8b3-44aa-976b-0fafa0ac3f00)
-
+![image](https://github.com/user-attachments/assets/c03ab94f-3196-4f26-822e-61f1e322a7a4)
 
 **Question 7**
----
-![image](https://github.com/user-attachments/assets/554ef8e6-fe51-46af-93ab-5f4d1d54f3f8)
 
+**Write a SQL query to classify base in the Calculations table as 'Provided' if it is not NULL, otherwise 'Not Provided'.**
+
+**Calculations table:**
+
+| cid | name      | type     | notnull | dflt_value | pk |
+|-----|-----------|----------|---------|------------|----|
+| 0   | id        | INTEGER  | 0       |            | 1  |
+| 1   | value1    | REAL     | 0       |            | 0  |
+| 2   | value2    | REAL     | 0       |            | 0  |
+| 3   | base      | INTEGER  | 0       |            | 0  |
+| 4   | exponent  | INTEGER  | 0       |            | 0  |
+| 5   | number    | REAL     | 0       |            | 0  |
+| 6   | decimal   | REAL     | 0       |            | 0  |
 
 ```sql
-delete from Doctors
-where doctor_id  = 1;
+select id,base,
+    case 
+        when base is not null then 'Provided'
+        else 'Not Provided'
+    end as base_status 
+from calculations;
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/ccd509a0-3ffd-4be0-9647-8759b5dbf167)
-
+![image](https://github.com/user-attachments/assets/93cc3165-1dcf-4f05-aacb-d8bcbe5fa94b)
 
 **Question 8**
----
-![image](https://github.com/user-attachments/assets/68a669aa-692d-4705-8ad0-074ce0976b63)
 
+**Write a SQL query to calculate the absolute value of the value1 column from the Calculations table.**
+
+**Calculations table:**
+
+| cid | name      | type     | notnull | dflt_value | pk |
+|-----|-----------|----------|---------|------------|----|
+| 0   | id        | INTEGER  | 0       |            | 1  |
+| 1   | value1    | REAL     | 0       |            | 0  |
+| 2   | value2    | REAL     | 0       |            | 0  |
+| 3   | base      | INTEGER  | 0       |            | 0  |
+| 4   | exponent  | INTEGER  | 0       |            | 0  |
+| 5   | number    | REAL     | 0       |            | 0  |
+| 6   | decimal   | REAL     | 0       |            | 0  |
 
 ```sql
-delete from Surgeries
-where surgery_id = 3;
+select id,value1,abs(value1) as absolute_value from calculations;
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/cb6f9a8e-de8c-45f7-9677-f17c0be1d91e)
-
+![image](https://github.com/user-attachments/assets/76a51146-4cc6-40ff-9bc3-ac182f48a792)
 
 **Question 9**
----
-![image](https://github.com/user-attachments/assets/362956f4-6744-4323-9467-e4082dcf40eb)
 
+**Write a SQL query to find customers who are either from the city 'New York' or who do not have a grade greater than 100. Return customer_id, cust_name, city, grade, and salesman_id.**
+
+**Sample table: customer**
+
+| customer_id |   cust_name    |    city    | grade | salesman_id |
+|-------------|----------------|------------|-------|-------------|
+| 3002        | Nick Rimando   | New York   | 100   | 5001        |
+| 3007        | Brad Davis     | New York   | 200   | 5001        |
+| 3005        | Graham Zusi    | California | 200   | 5002        |
 
 ```sql
-delete from Customer
-where (GRADE=2 and CUST_NAME like 'M%')
-and PAYMENT_AMT<3000;
+select * from customer where city == 'New York' or grade <= 100;
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/6ab65e7f-55f3-485e-b2dd-e66b6848563f)
-
+![image](https://github.com/user-attachments/assets/5d1e3f50-af73-4067-ad56-acd8c9501c92)
 
 **Question 10**
----
-![image](https://github.com/user-attachments/assets/eb452a4b-37fb-4abf-8dce-b57b3b35619c)
 
+**Write a SQL query to calculate the discounted price for products whose original price is between $50 and $150. Return product_id, original_price, discount_percentage, and discounted_price.**
+
+**Sample table: Products**
+
+| product_id | original_price | discount_percentage |
+|------------|----------------|---------------------|
+| 101        | 50.00          | 0.10                |
+| 102        | 125.00         | 0.15                |
+| 103        | 200.00         | 0.20                |
 
 ```sql
-delete from Customer
-where GRADE >2 
-and PAYMENT_AMT <(select avg(PAYMENT_AMT)from Customer)
-or OUTSTANDING_AMT>8000;
+select product_id,original_price,discount_percentage,(original_price - (original_price * discount_percentage)) as discounted_price from products; 
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/d601592d-82c9-4691-864e-8a62c9efb449)
+![image](https://github.com/user-attachments/assets/2c3cd1c9-87f8-4eb0-b64d-4e45b7b12eb4)
+
+**MODULE-2 GRADE**
+
+![image](https://github.com/user-attachments/assets/987eab01-1ea7-4588-9906-2a701917d680)
 
 
 ## RESULT
